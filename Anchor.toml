@@ -1,0 +1,58 @@
+[anchor]
+# See more keys and their definitions at https://book.anchor-lang.org/anchor_references/Anchor.toml.html
+
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+pump_clone = "PumpC1oneTokenLaunchpadBondingCurveAMM11111111"
+
+[programs.devnet]
+pump_clone = "PumpC1oneTokenLaunchpadBondingCurveAMM11111111"
+
+[programs.mainnet]
+pump_clone = "PumpC1oneTokenLaunchpadBondingCurveAMM11111111"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+
+[test]
+startup_wait = 5000
+shutdown_wait = 2000
+upgradeable = false
+
+[test.validator]
+url = "https://api.devnet.solana.com"
+clone = [
+    { address = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA", filename = "spl_token-3.5.0.so" },
+    { address = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL", filename = "spl_associated-token-account-1.1.2.so" },
+    { address = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s", filename = "mpl_token_metadata-1.13.2.so" },
+]
+
+[[test.validator.account]]
+address = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+filename = "spl_token_program.json"
+
+[[test.validator.account]]
+address = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+filename = "spl_associated_token_account_program.json"
+
+[[test.validator.account]]
+address = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+filename = "mpl_token_metadata_program.json"
+
+[test.validator.rpc]
+bind_address = "0.0.0.0"
+port = 8899
+
+[test.validator.websocket]
+bind_address = "0.0.0.0"
+port = 8900
